@@ -1,0 +1,16 @@
+canvas {
+  margin: 0 auto;
+  height : 60% !important;
+  width: 60% !important;
+  border: 1px solid rgb(77, 96, 108);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#graphMsg{
+  display: none;
+}
+
+.rangeSelector{
+  margin: 20px 0px;
+}

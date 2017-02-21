@@ -1,0 +1,30 @@
+--- 2/19
+
+Finally, everything about the graph is working !
+Company selection, range selection, and it's displaying correctly !
+Next step is to add some nice CSS to help it look good.
+Also, the way the graph is morphing needs to be redone (check examples)
+
+--- 2/18
+
+Added the chart in the app. But now I need to find a way to
+refresh the graph when the data changes (right now the data
+is stored in a standard var so it does not trigger a render)
+And I can't store data in a state because I can't setState in
+a render... So I must find a way to call the Graph component.
+
+--- 2/17
+
+We now receive data successfully, however the text status
+(which will become the graph in the future) is updated via
+a jQuery call. We need to replace it with a react state.
+Thing is the api call is in the render and I can't update
+a state in a render.
+Two choices :
+I move my api call out of the render and find a way to call
+it from the Card handleClick. (or catch a change in a state
+of the App)
+
+Actually I can't think of anything else right now.
+
+Also people recommend to use flux. >;()
