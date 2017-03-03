@@ -85,7 +85,9 @@ class Graph extends Component {
         }],
       },
       tooltips: {
-        titleFontSize: 30
+        titleFontSize: 30,
+        displayColors: false,
+        bodyFontSize: 0,
       }
     }
     return (
