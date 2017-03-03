@@ -73,12 +73,19 @@ class Graph extends Component {
   render(){
     var d = this.generateDataObject(DATA);
     var options = {
-      fontSize: 40,
       maintainAspectRatio: true,
       scales: {
         xAxes: [{
           display: false
-        }]
+        }],
+        yAxes:[{
+          ticks: {
+            fontSize: 20
+          }
+        }],
+      },
+      tooltips: {
+        titleFontSize: 30
       }
     }
     return (
