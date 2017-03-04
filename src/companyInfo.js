@@ -22,7 +22,11 @@ class CompanyInfo extends Component{
           success: (json) => {
               console.log('success');
               this.setState({fullName: ' - ' + json.Name, last: this.props.selected});
-            }
+            },
+          error: (resp, status) => {
+            console.log('Unable to retrieve company name');
+            this.setState({fullName: '', last: this.props.selected});
+          }
         });
       }
     }

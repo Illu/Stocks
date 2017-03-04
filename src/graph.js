@@ -170,6 +170,7 @@ class GraphLoader extends Component {
       },
       error: function(response, txtStatus){
         $("#graphMsg").text("Error loading data");
+        alert("Service currently unavailable, please try again later.");
         console.log(response, txtStatus);
       }
     });
