@@ -4,6 +4,18 @@ import CompanyInfo from './companyInfo';
 import './App.css';
 var $ = require("jquery");
 
+class AddCard extends Component {
+  render(){
+    return (
+      <div className='cardContainer'>
+        <div className='addCard'>
+          {/* <h1>+</h1> */}
+        </div>
+      </div>
+    );
+  }
+}
+
 class Card extends Component {
 
   constructor(props){
@@ -36,8 +48,6 @@ class Card extends Component {
         <span>
           {this.props.company}
         </span>
-
-    //  style={{color:"orange"}} to span to help debugging
 
     var cardClasses = 'companyCard card-green';
     var addedToChange = '';
@@ -72,8 +82,10 @@ class Cards extends Component {
         key={company.name} />)
     });
 
+    cards.push(<AddCard key='addCard' />);
+
     return (
-      <div>
+      <div className='cards-container'>
         {cards}
       </div>
     );
