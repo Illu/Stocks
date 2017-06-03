@@ -36,7 +36,6 @@ class Graph extends Component {
 
   generateDataObject(data){
     if (data){
-      // data = data.Elements[0].DataSeries.open.values;
       return (
         {
           labels: data,

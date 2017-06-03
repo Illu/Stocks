@@ -5,11 +5,25 @@ import './App.css';
 var $ = require("jquery");
 
 class AddCard extends Component {
+
+  onKeyPress = (e) => {
+    if (e.key === 'Enter') {
+
+      var newCompany = {
+        name: e.target.value,
+        selected: false
+      }
+
+      this.refs.newCardInput.value = '';
+      this.props.updateCompanies(newCompany);
+    }
+  }
+
   render(){
     return (
       <div className='cardContainer'>
         <div className='addCard'>
-          {/* <h1>+</h1> */}
+          <input className="ticker-input" placeholder="Enter ticker symbol..." onKeyPress={this.onKeyPress} ref="newCardInput"></input>
         </div>
       </div>
     );
@@ -75,14 +89,21 @@ class Card extends Component {
 class Cards extends Component {
   render() {
     var cards = [];
+    var i = 0;
     this.props.companies.forEach((company) => {
+
+      //generate a key. (cannot use the company name as a key
+      // because the user might add the same company twice)
+      var key = company.name + i;
+      i++;
+
       cards.push(<Card company={company.name}
         selected={this.props.selected}
         onChildClick={this.props.updateSelected}
-        key={company.name} />)
+        key={key} />)
     });
 
-    cards.push(<AddCard key='addCard' />);
+    cards.push(<AddCard key='addCard' updateCompanies={this.props.updateCompanies} companies={this.props.companies}/>);
 
     return (
       <div className='cards-container'>
@@ -97,7 +118,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      selected: null
+      selected: null,
+      companies: this.props.companies
     };
   }
 
@@ -105,6 +127,14 @@ class App extends Component {
     this.setState({
       selected: companyName
     });
+  }
+
+  updateCompanies(newCompany){
+    var tmp = this.state.companies;
+    tmp.push(newCompany);
+    tmp.shift();
+    this.setState({companies: tmp});
+
   }
 
   render() {
@@ -115,9 +145,10 @@ class App extends Component {
         </div>
         <GraphLoader selected={this.state.selected}/>
         <CompanyInfo selected={this.state.selected}/>
-        <Cards companies={this.props.companies}
+        <Cards companies={this.state.companies}
         selected={this.state.selected}
-        updateSelected={this.updateSelected.bind(this)}/>
+        updateSelected={this.updateSelected.bind(this)}
+        updateCompanies={this.updateCompanies.bind(this)}/>
       </div>
     );
   }
